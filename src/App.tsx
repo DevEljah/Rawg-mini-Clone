@@ -1,11 +1,9 @@
-import { Button } from "@chakra-ui/react";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <Button colorScheme="blue" onClick={() => console.log("Clicked!")}>
-        Click me!
-      </Button>
+      <Navbar />
     </>
   );
 }
