@@ -1,6 +1,7 @@
 import {
   Box,
   Flex,
+  useColorMode,
   IconButton,
   Input,
   InputGroup,
@@ -12,6 +13,8 @@ import { FaSearch } from "react-icons/fa";
 import logo from "../assets/react.svg";
 
 function Navbar() {
+  const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <Flex
       as="nav"
@@ -19,7 +22,6 @@ function Navbar() {
       justify="space-between"
       wrap="wrap"
       padding="1rem"
-      bg="gray.800"
       color="black"
     >
       <Box>
@@ -30,13 +32,30 @@ function Navbar() {
         <Input
           type="text"
           placeholder="Search"
-          bg="#fff"
+          bg="#333333"
           rounded="full"
           overflow="hidden"
+          sx={{
+            '&[type="text"]': {
+              border: "none",
+              boxShadow: "none",
+              width: "100%",
+              _placeholder: {
+                color: "gray.500",
+              },
+            },
+            _hover: {
+              bg: "#fff",
+            },
+            _focus: {
+              bg: "#fff",
+            },
+          }}
         />
       </InputGroup>
+
       <IconButton
-        icon={<BsToggleOn />}
+        icon={<BsToggleOn onClick={toggleColorMode} />}
         size="lg"
         variant="ghost"
         aria-label="Toggle navigation"
