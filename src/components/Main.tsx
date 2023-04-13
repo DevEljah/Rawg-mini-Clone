@@ -1,9 +1,9 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import Data from "./Data";
 
 const Main = () => {
   return (
     <>
-      <h1>Main</h1>
+      <Data />
     </>
   );
 };
