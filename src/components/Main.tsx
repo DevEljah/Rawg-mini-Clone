@@ -1,9 +1,12 @@
+import { Box } from "@chakra-ui/react";
 import Data from "./Data";
 
 const Main = () => {
   return (
     <>
-      <Data />
+      <Box pr={2}>
+        <Data />
+      </Box>
     </>
   );
 };

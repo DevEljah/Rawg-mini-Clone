@@ -14,7 +14,7 @@ const Data = () => {
   ];
   return (
     <>
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={6}>
+      <SimpleGrid columns={{ sm: 2, md: 2, lg: 3 }} spacing={6}>
         {items.map((item) => (
           <Box
             key={item.id}

@@ -27,7 +27,7 @@ function Navbar() {
         <Box>
           <img src={logo} alt="Logo" />
         </Box>
-        <InputGroup width="80%">
+        <InputGroup width={{ base: "50%", md: "80% " }}>
           <InputLeftElement pointerEvents="none" children={<FaSearch />} />
           <Input
             type="text"

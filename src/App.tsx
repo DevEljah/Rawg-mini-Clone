@@ -1,4 +1,4 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
@@ -7,19 +7,22 @@ function App() {
   return (
     <>
       <Grid
-        templateAreas={`"header header"
-                  "nav main"
-                  "nav footer"`}
+        templateAreas={`"header header" "nav main" "nav footer"`}
         gridTemplateRows={"8vh 1fr 30px"}
-        gridTemplateColumns={{ base: "20vh", md: "30vh 1fr" }}
+        gridTemplateColumns={{ base: "0%", md: "20vh", lg: "30vh 1fr" }}
         h="80vh"
-        gap="1"
+        gap="0"
         fontWeight="bold"
       >
         <GridItem pl="2" /* bg="orange.300" */ area={"header"}>
           <Navbar />
         </GridItem>
-        <GridItem pl="2" /* bg="pink.300" */ area={"nav"}>
+        <GridItem
+          pl="2"
+          /* bg="pink.300" */
+          area={"nav"}
+          display={useBreakpointValue({ base: "none", md: "block" })}
+        >
           Aside
         </GridItem>
         <GridItem pl="2" /* bg="green.300" */ area={"main"}>
