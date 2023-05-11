@@ -5,13 +5,13 @@ const GameCard = () => {
   return (
     <>
       <div>
-        {data.map((game) => (
+        {data.map((items) => (
           <SimpleGrid
-            key={game.id}
+            key={items.id}
             columns={{ sm: 2, md: 2, lg: 3 }}
             spacing={6}
           >
-            {game.games.map((game) => (
+            {items.games.map((game) => (
               <Box
                 key={game.id}
                 borderWidth="1px"
