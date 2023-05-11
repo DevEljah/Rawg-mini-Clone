@@ -1,6 +1,6 @@
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
 
-const Data = () => {
+const GameCard = () => {
   const items = [
     { id: 1, name: "game1" },
     { id: 2, name: "game2" },
@@ -22,7 +22,7 @@ const Data = () => {
             borderRadius="lg"
             overflow="hidden"
           >
-            <Image src="https://via.placeholder.com/400x250" />
+            <Image src="https://via.placeholder.com/400x250" alt="game-image" />
             <Box p="6">
               <Box display="flex" alignItems="baseline">
                 <Text fontWeight="semibold" fontSize="lg" mr="2">
@@ -43,4 +43,4 @@ const Data = () => {
   );
 };
 
-export default Data;
+export default GameCard;
