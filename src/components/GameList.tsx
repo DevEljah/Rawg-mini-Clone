@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
+import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
 import axios from "axios";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
 // import data from "./data/genres";
@@ -10,22 +12,48 @@ interface Game {
   platforms: { platform: { id: number; name: string } }[];
 }
 
-const GameCard = () => {
+const getPlatformIcon = (platformName: string) => {
+  switch (platformName) {
+    case "Xbox Series S/X":
+    case "Xbox One":
+    case "Xbox 360":
+      return <FaXbox />;
+    case "PlayStation 5":
+    case "PlayStation 4":
+    case "PlayStation 3":
+    case "PS Vita":
+    case "PSP":
+      return <FaPlaystation />;
+    case "PC":
+      return <FaWindows />;
+    case "Nintendo Switch":
+      return <BsNintendoSwitch />;
+    case "macOS":
+    case "iOS":
+      return <BsApple />;
+    case "Linux":
+      return <FaLinux />;
+    case "Android":
+      return <BsAndroid />;
+    default:
+      return null;
+  }
+};
+
+const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
     const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
-    // Replace with your API key
-    const DATES = "2019-09-01,2019-09-30";
+
+    // const DATES = "2016-09-01,2022-09-30";
     // Replace with your desired date range
-    const PLATFORMS = "18,1,7";
-    // Replace with your desired platform IDs
+
     const fetchGames = async () => {
       const response = await axios.get("https://api.rawg.io/api/games", {
         params: {
           key: API_KEY,
-          dates: DATES,
-          platforms: PLATFORMS,
+          // dates: DATES,
         },
       });
       // console.log(response.data);
@@ -50,9 +78,19 @@ const GameCard = () => {
                 <Text fontWeight="semibold" fontSize="lg" mr="2">
                   {game.name}
                 </Text>
-                <Box fontSize="sm" color="gray.500">
+                <Box
+                  fontSize="sm"
+                  color="gray.500"
+                  display="flex"
+                  flexDirection="row"
+                >
                   {game.platforms.map((platform) => (
-                    <p key={platform.platform.id}>{platform.platform.name}</p>
+                    <div
+                      key={platform.platform.id}
+                      style={{ marginRight: "5px" }}
+                    >
+                      {getPlatformIcon(platform.platform.name)}
+                    </div>
                   ))}
                 </Box>
               </Box>
@@ -67,7 +105,7 @@ const GameCard = () => {
   );
 };
 
-export default GameCard;
+export default GameList;
 
 // I set the state with response.data.results instead of just response.data. This is because the data object returned by the RAWG.io API contains additional metadata about the API response, such as the number of total results and the current page number. The actual game data is nested within the results key of the data object.
 

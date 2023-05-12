@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
-import GameCard from "./GameCard";
+import GameList from "./GameList";
 
 const Main = () => {
   return (
     <>
       <Box pr={2}>
-        <GameCard />
+        <GameList />
       </Box>
     </>
   );
