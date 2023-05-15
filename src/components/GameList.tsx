@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
 import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
-import axios from "axios";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
-// import data from "./data/genres";
+import axios from "axios";
+
+import getCroppedImageUrl from "../services/image-url";
 interface Game {
   id: number;
   name: string;
@@ -13,30 +14,22 @@ interface Game {
 }
 
 const getPlatformIcon = (platformName: string) => {
-  switch (platformName) {
-    case "Xbox Series S/X":
-    case "Xbox One":
-    case "Xbox 360":
-      return <FaXbox />;
-    case "PlayStation 5":
-    case "PlayStation 4":
-    case "PlayStation 3":
-    case "PS Vita":
-    case "PSP":
-      return <FaPlaystation />;
-    case "PC":
-      return <FaWindows />;
-    case "Nintendo Switch":
-      return <BsNintendoSwitch />;
-    case "macOS":
-    case "iOS":
-      return <BsApple />;
-    case "Linux":
-      return <FaLinux />;
-    case "Android":
-      return <BsAndroid />;
-    default:
-      return null;
+  if (platformName === "Xbox Series S/X") {
+    return <FaXbox />;
+  } else if (platformName === "PlayStation 5") {
+    return <FaPlaystation />;
+  } else if (platformName === "PC") {
+    return <FaWindows />;
+  } else if (platformName === "Nintendo Switch") {
+    return <BsNintendoSwitch />;
+  } else if (platformName === "macOS" || platformName === "iOS") {
+    return <BsApple />;
+  } else if (platformName === "Linux") {
+    return <FaLinux />;
+  } else if (platformName === "Android") {
+    return <BsAndroid />;
+  } else {
+    return null;
   }
 };
 
@@ -72,31 +65,31 @@ const GameList = () => {
             borderRadius="lg"
             overflow="hidden"
           >
-            <Image src={game.background_image} alt="game-image" />
+            <Image
+              src={getCroppedImageUrl(game.background_image)}
+              alt="game-image"
+            />
             <Box p="6">
-              <Box display="flex" alignItems="baseline">
+              <Box
+                fontSize="sm"
+                color="gray.500"
+                display="flex"
+                flexDirection="row"
+              >
+                {game.platforms.map((platform) => (
+                  <div
+                    key={platform.platform.id}
+                    style={{ marginRight: "5px" }}
+                  >
+                    {getPlatformIcon(platform.platform.name)}
+                  </div>
+                ))}
+              </Box>
+              <Box display="flex" alignItems="baseline" mt="4">
                 <Text fontWeight="semibold" fontSize="lg" mr="2">
                   {game.name}
                 </Text>
-                <Box
-                  fontSize="sm"
-                  color="gray.500"
-                  display="flex"
-                  flexDirection="row"
-                >
-                  {game.platforms.map((platform) => (
-                    <div
-                      key={platform.platform.id}
-                      style={{ marginRight: "5px" }}
-                    >
-                      {getPlatformIcon(platform.platform.name)}
-                    </div>
-                  ))}
-                </Box>
               </Box>
-              <Text mt="2" fontSize="sm">
-                Game description goes here...
-              </Text>
             </Box>
           </Box>
         ))}
