@@ -2,6 +2,7 @@ import { Grid, GridItem, useBreakpointValue } from "@chakra-ui/react";
 
 import Navbar from "./components/Navbar";
 import Main from "./components/Main";
+import GenreList from "./components/GenreList";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           area={"nav"}
           display={useBreakpointValue({ base: "none", md: "block" })}
         >
-          Aside
+          <GenreList />
         </GridItem>
         <GridItem pl="2" /* bg="green.300" */ area={"main"}>
           <Main />
