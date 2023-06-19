@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
 import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
-import axios from "axios";
 
 import getCroppedImageUrl from "../services/image-url";
+import { fetchData } from "../utils/fetchData";
 interface Game {
   id: number;
   name: string;
@@ -37,20 +37,9 @@ const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    const API_KEY = import.meta.env.VITE_REACT_APP_API_KEY;
-
-    // const DATES = "2016-09-01,2022-09-30";
-    // Replace with your desired date range
-
     const fetchGames = async () => {
-      const response = await axios.get("https://api.rawg.io/api/games", {
-        params: {
-          key: API_KEY,
-          // dates: DATES,
-        },
-      });
-      // console.log(response.data);
-      setGames(response.data.results);
+      const fetchedData = await fetchData();
+      setGames(fetchedData);
     };
     fetchGames();
   }, []);
