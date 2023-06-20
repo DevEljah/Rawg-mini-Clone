@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
-import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
+// import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
+// import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
 
 import getCroppedImageUrl from "../services/image-url";
 import { fetchData } from "../utils/fetchData";
+import PlatformIcon from "./PlatformIcon ";
 interface Game {
   id: number;
   name: string;
@@ -12,26 +13,6 @@ interface Game {
   background_image: string;
   platforms: { platform: { id: number; name: string } }[];
 }
-
-const getPlatformIcon = (platformName: string) => {
-  if (platformName === "Xbox Series S/X") {
-    return <FaXbox />;
-  } else if (platformName === "PlayStation 5") {
-    return <FaPlaystation />;
-  } else if (platformName === "PC") {
-    return <FaWindows />;
-  } else if (platformName === "Nintendo Switch") {
-    return <BsNintendoSwitch />;
-  } else if (platformName === "macOS" || platformName === "iOS") {
-    return <BsApple />;
-  } else if (platformName === "Linux") {
-    return <FaLinux />;
-  } else if (platformName === "Android") {
-    return <BsAndroid />;
-  } else {
-    return null;
-  }
-};
 
 const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
@@ -70,7 +51,7 @@ const GameList = () => {
                     key={platform.platform.id}
                     style={{ marginRight: "5px" }}
                   >
-                    {getPlatformIcon(platform.platform.name)}
+                    <PlatformIcon platformName={platform.platform.name} />
                   </div>
                 ))}
               </Box>
