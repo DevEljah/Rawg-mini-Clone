@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-// import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
-// import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
 
 import getCroppedImageUrl from "../services/image-url";

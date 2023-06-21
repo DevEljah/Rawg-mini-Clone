@@ -1,7 +1,6 @@
 import React from "react";
 import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
 import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
-
 interface PlatformIconProps {
   platformName: string;
 }
