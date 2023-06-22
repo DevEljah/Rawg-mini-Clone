@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
 
 import getCroppedImageUrl from "../services/image-url";
-import { fetchData } from "../utils/fetchData";
+import apiClient from "../utils/apiClient";
 import PlatformIcon from "./PlatformIcon ";
 interface Game {
   id: number;
@@ -11,16 +11,19 @@ interface Game {
   background_image: string;
   platforms: { platform: { id: number; name: string } }[];
 }
+interface FetchGamesRes {
+  count: number;
+  results: Game[];
+}
 
 const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    const fetchGames = async () => {
-      const fetchedData = await fetchData();
-      setGames(fetchedData);
-    };
-    fetchGames();
+    apiClient
+      .get<FetchGamesRes>("/games")
+      .then((res) => setGames(res.data.results));
+    console.log(games);
   }, []);
 
   return (
