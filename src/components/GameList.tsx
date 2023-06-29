@@ -1,32 +1,10 @@
-import { useState, useEffect } from "react";
 import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
-
+import useGames from "../hooks/useGames";
 import getCroppedImageUrl from "../services/image-url";
-import apiClient from "../utils/apiClient";
 import PlatformIcon from "./PlatformIcon ";
-interface Game {
-  id: number;
-  name: string;
-  released: string;
-  background_image: string;
-  platforms: { platform: { id: number; name: string } }[];
-}
-interface FetchGamesRes {
-  count: number;
-  results: Game[];
-}
 
 const GameList = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchGamesRes>("/games")
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-    console.log(games);
-  }, []);
+  const { games, error } = useGames();
 
   return (
     <>
