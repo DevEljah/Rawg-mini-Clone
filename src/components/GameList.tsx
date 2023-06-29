@@ -18,17 +18,20 @@ interface FetchGamesRes {
 
 const GameList = () => {
   const [games, setGames] = useState<Game[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     apiClient
       .get<FetchGamesRes>("/games")
-      .then((res) => setGames(res.data.results));
+      .then((res) => setGames(res.data.results))
+      .catch((err) => setError(err.message));
     console.log(games);
   }, []);
 
   return (
     <>
       <SimpleGrid columns={{ sm: 2, md: 2, lg: 3 }} spacing={6}>
+        {error && <Text>{error}</Text>}
         {games.map((game) => (
           <Box
             key={game.id}
