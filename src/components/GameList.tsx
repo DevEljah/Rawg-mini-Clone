@@ -1,7 +1,6 @@
-import { SimpleGrid, Box, Image, Text } from "@chakra-ui/react";
+import { SimpleGrid, Box, Text } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
-import getCroppedImageUrl from "../services/image-url";
-import PlatformIcon from "./PlatformIcon ";
+import GameCard from "./GameCard";
 
 const GameList = () => {
   const { games, error } = useGames();
@@ -17,32 +16,7 @@ const GameList = () => {
             borderRadius="lg"
             overflow="hidden"
           >
-            <Image
-              src={getCroppedImageUrl(game.background_image)}
-              alt="game-image"
-            />
-            <Box p="6">
-              <Box
-                fontSize="sm"
-                color="gray.500"
-                display="flex"
-                flexDirection="row"
-              >
-                {game.platforms.map((platform) => (
-                  <div
-                    key={platform.platform.id}
-                    style={{ marginRight: "5px" }}
-                  >
-                    <PlatformIcon platformName={platform.platform.name} />
-                  </div>
-                ))}
-              </Box>
-              <Box display="flex" alignItems="baseline" mt="4">
-                <Text fontWeight="semibold" fontSize="lg" mr="2">
-                  {game.name}
-                </Text>
-              </Box>
-            </Box>
+            <GameCard key={game.id} game={game} />
           </Box>
         ))}
       </SimpleGrid>
