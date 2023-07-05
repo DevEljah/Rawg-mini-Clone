@@ -13,6 +13,7 @@ export interface Game {
   released: string;
   background_image: string;
   parent_platforms: { platform: { id: number; name: string; slug: string } }[];
+  metacritic: number;
 }
 interface FetchGamesRes {
   count: number;
