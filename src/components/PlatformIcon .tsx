@@ -1,27 +1,32 @@
-import React from "react";
 import { FaXbox, FaPlaystation, FaWindows, FaLinux } from "react-icons/fa";
-import { BsNintendoSwitch, BsAndroid, BsApple } from "react-icons/bs";
+import { BsNintendoSwitch, BsAndroid, BsApple, BsGlobe } from "react-icons/bs";
+import { HStack, Icon } from "@chakra-ui/react";
+import { Platform } from "../hooks/useGames";
+import { IconType } from "react-icons/lib";
+
 interface PlatformIconProps {
-  platformName: string;
+  platforms: Platform[];
 }
 
-const PlatformIcon: React.FC<PlatformIconProps> = ({ platformName }) => {
-  if (platformName === "Xbox Series S/X") {
-    return <FaXbox />;
-  } else if (platformName === "PlayStation 5") {
-    return <FaPlaystation />;
-  } else if (platformName === "PC") {
-    return <FaWindows />;
-  } else if (platformName === "Nintendo Switch") {
-    return <BsNintendoSwitch />;
-  } else if (platformName === "macOS" || platformName === "iOS") {
-    return <BsApple />;
-  } else if (platformName === "Linux") {
-    return <FaLinux />;
-  } else if (platformName === "Android") {
-    return <BsAndroid />;
-  } else {
-    return null;
-  }
+const PlatformIcon = ({ platforms }: PlatformIconProps) => {
+  const iconMap: { [key: string]: IconType } = {
+    pc: FaWindows,
+    playstation: FaPlaystation,
+    xbox: FaXbox,
+    nintendo: BsNintendoSwitch,
+    mac: BsApple,
+    linux: FaLinux,
+    android: BsAndroid,
+    ios: BsApple,
+    web: BsGlobe,
+  };
+  return (
+    <HStack marginY={1}>
+      {platforms.map((platform) => (
+        <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
+      ))}
+    </HStack>
+  );
 };
+
 export default PlatformIcon;
