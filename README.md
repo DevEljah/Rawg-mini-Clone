@@ -32,18 +32,18 @@ To get a local copy of this project up and running, follow these steps:
 
 ## Folder Structure
 
-├── public/ # Public assets and index.html
-├── src/ # Source code
-│ ├── components/ # React components
-│ ├── assets/ # Assets (images, icons, etc.)
-│ ├── hooks/ # Custom hooks
-│ ├── services/ # API services
-│ ├── pages/ # Application pages
-│ └── utils/ # Utility functions
-├── .gitignore # Git ignore configuration
-├── package.json # Project dependencies and scripts
-├── README.md # Project documentation (you're reading it!)
-└── vite.config.js # Vite.js configuration
+├── public/              # Public assets and index.html
+├── src/                 # Source code
+│   ├── components/      # React components
+│   ├── assets/          # Assets (images, icons, etc.)
+│   ├── hooks/           # Custom hooks
+│   ├── services/        # API services
+│   ├── pages/           # Application pages
+│   └── utils/           # Utility functions
+├── .gitignore           # Git ignore configuration
+├── package.json         # Project dependencies and scripts
+├── README.md            # Project documentation (you're reading it!)
+└── vite.config.js       # Vite.js configuration
 
 ## Contributing
 
