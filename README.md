@@ -35,12 +35,10 @@ To get a local copy of this project up and running, follow these steps:
 ├── public/ # Public assets and index.html
 ├── src/ # Source code
 │ ├── components/ # React components
-│ ├── assests/ # React components
+│ ├── assets/ # Assets (images, icons, etc.)
 │ ├── hooks/ # Custom hooks
 │ ├── services/ # API services
 │ ├── pages/ # Application pages
-│ ├── styles/ # Global styles and Chakra UI theme
-│ ├── types/ # TypeScript type definitions
 │ └── utils/ # Utility functions
 ├── .gitignore # Git ignore configuration
 ├── package.json # Project dependencies and scripts
