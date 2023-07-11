@@ -28,7 +28,10 @@ function App() {
           area={"nav"}
           display={useBreakpointValue({ base: "none", md: "block" })}
         >
-          <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+          <GenreList
+            onSelectGenre={(genre) => setSelectedGenre(genre)}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
         <GridItem pl="2" /* bg="green.300" */ area={"main"}>
           <GameList selectedGenre={selectedGenre} />
