@@ -19,12 +19,12 @@ function App() {
         h="80vh"
         gap="0"
         fontWeight="bold"
+        pl="2"
       >
-        <GridItem pl="2" /* bg="orange.300" */ area={"header"}>
+        <GridItem /* bg="orange.300" */ area={"header"}>
           <Navbar />
         </GridItem>
         <GridItem
-          pl="2"
           /* bg="pink.300" */
           area={"nav"}
           display={useBreakpointValue({ base: "none", md: "block" })}
@@ -34,13 +34,11 @@ function App() {
             selectedGenre={selectedGenre}
           />
         </GridItem>
-        <GridItem pl="2" /* bg="green.300" */ area={"main"}>
+        <GridItem /* bg="green.300" */ area={"main"}>
           <PlatformSelector />
           <GameList selectedGenre={selectedGenre} />
         </GridItem>
-        <GridItem pl="2" /* bg="blue.300" */ area={"footer"}>
-          Footer
-        </GridItem>
+        <GridItem /* bg="blue.300" */ area={"footer"}>Footer</GridItem>
       </Grid>
     </>
   );
