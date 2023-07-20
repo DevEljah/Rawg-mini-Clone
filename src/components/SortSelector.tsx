@@ -8,7 +8,20 @@ import {
 } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 
-const SortSelector = () => {
+interface Props {
+  onSelectSortOrder: (sortOrder: string) => void;
+}
+
+const SortSelector = ({ onSelectSortOrder }: Props) => {
+  const sortOrders = [
+    { value: "", label: "Relevance" },
+    { value: "-added", label: "Date added" },
+    { value: "name", label: "Name" },
+    { value: "-released", label: "Release date" },
+    { value: "-metacritic", label: "Popularity" },
+    { value: "-rating", label: "Average rating" },
+  ];
+
   return (
     <Box>
       <Menu>
@@ -16,12 +29,15 @@ const SortSelector = () => {
           Order by: Relevance
         </MenuButton>
         <MenuList>
-          <MenuItem>Relevance</MenuItem>
-          <MenuItem>Date added</MenuItem>
-          <MenuItem>Name</MenuItem>
-          <MenuItem>Release date</MenuItem>
-          <MenuItem>Popularity</MenuItem>
-          <MenuItem>Average rating</MenuItem>
+          {sortOrders.map((order) => (
+            <MenuItem
+              onClick={() => onSelectSortOrder(order.value)}
+              key={order.value}
+              value={order.value}
+            >
+              {order.label}
+            </MenuItem>
+          ))}
         </MenuList>
       </Menu>
     </Box>
