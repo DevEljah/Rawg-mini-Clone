@@ -9,11 +9,13 @@ import {
 } from "@chakra-ui/react";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
+import { useRef } from "react";
 
 import logo from "../assets/react.svg";
 
 function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const ref = useRef<HTMLInputElement>(null);
 
   return (
     <>
@@ -27,23 +29,31 @@ function Navbar() {
         <Box>
           <img src={logo} alt="Logo" />
         </Box>
-        <InputGroup width={{ base: "50%", md: "80% " }}>
-          <InputLeftElement pointerEvents="none" children={<FaSearch />} />
-          <Input
-            type="text"
-            placeholder="Search"
-            rounded="full"
-            overflow="hidden"
-            sx={{
-              '&[type="text"]': {
-                width: "100%",
-                _placeholder: {
-                  color: "gray.500",
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (ref.current) console.log(ref.current.value);
+          }}
+        >
+          <InputGroup width={{ base: "50%", md: "80% " }}>
+            <InputLeftElement pointerEvents="none" children={<FaSearch />} />
+            <Input
+              ref={ref}
+              type="text"
+              placeholder="Search"
+              rounded="full"
+              overflow="hidden"
+              sx={{
+                '&[type="text"]': {
+                  width: "100%",
+                  _placeholder: {
+                    color: "gray.500",
+                  },
                 },
-              },
-            }}
-          />
-        </InputGroup>
+              }}
+            />
+          </InputGroup>
+        </form>
         <Button
           onClick={toggleColorMode}
           variant="ghost"
