@@ -13,7 +13,11 @@ import { useRef } from "react";
 
 import logo from "../assets/react.svg";
 
-function Navbar() {
+interface Props {
+  onSearch: (searchText: string) => void;
+}
+
+function Navbar({ onSearch }: Props) {
   const { colorMode, toggleColorMode } = useColorMode();
   const ref = useRef<HTMLInputElement>(null);
 
@@ -30,12 +34,13 @@ function Navbar() {
           <img src={logo} alt="Logo" />
         </Box>
         <form
+          style={{ width: "60%", paddingLeft: "7%" }}
           onSubmit={(event) => {
             event.preventDefault();
-            if (ref.current) console.log(ref.current.value);
+            if (ref.current) onSearch(ref.current.value);
           }}
         >
-          <InputGroup width={{ base: "50%", md: "80% " }}>
+          <InputGroup /* width={{ base: "50%", md: "80% " }} */>
             <InputLeftElement pointerEvents="none" children={<FaSearch />} />
             <Input
               ref={ref}
