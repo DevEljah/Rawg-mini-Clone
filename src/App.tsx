@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import GenreList from "./components/GenreList";
 import { Genre } from "./hooks/useGenres";
 import { Platform } from "./hooks/useGames";
-import GameList from "./components/GameList";
+import GameGrid from "./components/GameGrid";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
@@ -66,7 +66,7 @@ function App() {
               }
             />
           </HStack>
-          <GameList gameQuery={gameQuery} />
+          <GameGrid gameQuery={gameQuery} />
         </GridItem>
         <GridItem /* bg="blue.300" */ area={"footer"}>Footer</GridItem>
       </Grid>

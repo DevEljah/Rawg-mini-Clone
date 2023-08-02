@@ -8,7 +8,7 @@ interface Props {
   gameQuery: GameQuery;
 }
 
-const GameList = ({ gameQuery }: Props) => {
+const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
@@ -31,4 +31,4 @@ const GameList = ({ gameQuery }: Props) => {
   );
 };
 
-export default GameList;
+export default GameGrid;
